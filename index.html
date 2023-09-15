@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <!-- <meta http-equiv="refresh" content="10"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="/assets/stars.css">
 </head>
 <body>
     
@@ -15,14 +18,9 @@
         <h1><b>IMPACT</b> <span style="font-variant-caps:small-caps">leaderboard</span></h1>
       </div>
       <div class="list__body">
-        <table class="list__table">
-          <tr class="list__row" data-image="https://www.formula1.com/content/fom-website/en/drivers/lewis-hamilton/_jcr_content/image.img.1920.medium.jpg/1533294345447.jpg" data-nationality="British" data-dob="1985-01-07" data-country="gb">
-            <td class="list__cell"><span class="list__value">1</span></td>
-            <td class="list__cell"><span class="list__value">Lewis Hamilton</span><small class="list__label">Ninja</small></td>
-            <td class="list__cell"><span class="list__value">White</span><small class="list__label">Belt</small></td>
-            <td class="list__cell"><span class="list__value">8</span><small class="list__label">Level</small></td>
-          </tr>
-          <tr class="list__row" data-image="https://www.formula1.com/content/fom-website/en/drivers/sebastian-vettel/_jcr_content/image.img.1920.medium.jpg/1533294389985.jpg" data-nationality="German" data-dob="1987-07-03" data-country="de">
+        <table class="list__table" id="leaderboard_table">
+          
+          <!-- <tr class="list__row" data-image="https://www.formula1.com/content/fom-website/en/drivers/sebastian-vettel/_jcr_content/image.img.1920.medium.jpg/1533294389985.jpg" data-nationality="German" data-dob="1987-07-03" data-country="de">
             <td class="list__cell"><span class="list__value">2</span></td>
             <td class="list__cell"><span class="list__value">Sebastian Vettel</span><small class="list__label">Driver</small></td>
             <td class="list__cell"><span class="list__value">Ferrari</span><small class="list__label">Constructor</small></td>
@@ -135,8 +133,11 @@
             <td class="list__cell"><span class="list__value">Sergey Sirotkin</span><small class="list__label">Driver</small></td>
             <td class="list__cell"><span class="list__value">Williams</span><small class="list__label">Constructor</small></td>
             <td class="list__cell"><span class="list__value">0</span><small class="list__label">Points</small></td>
-          </tr>
+          </tr> -->
         </table>
+      </div>
+      <div class="list__footer">
+        <h5>Code Ninjas Langley</h5>
       </div>
     </div>
   </div>
@@ -154,7 +155,47 @@
     </div>
     <div class="sidebar__body"></div>
   </div>
+
+
+  <script src="assets/papaparse.min.js"></script>
   <script src="assets/leaderboard.js"></script>
-  <script src="assets/csvkit.js"></script>
+
+  <script>
+  getText("https://docs.google.com/spreadsheets/d/e/2PACX-1vSscQfV-TdME-3KWkPSr_o3FphomzJ7o-TcTmCzCtY-grKUIzpI6GV0piJBy_hU_VH6OOWrbjhmfI9j/pub?gid=892912605&single=true&output=csv");
+  var tab = document.getElementById('leaderboard_table')
+  async function getText(file) {
+    let myObject = await fetch(file);
+    let myText = await myObject.text();
+    let ninjas = Papa.parse(myText, {header:true}).data;
+    console.log(ninjas);
+
+    var count = 1;
+
+    var n = ninjas.sort(function(a, b) { 
+        return  b.Score - a.Score;
+    })
+
+    Gen={
+      'M':'m-ninja.png',
+      'F':'f-ninja.png',
+      'O':'o-ninja.png'
+    }
+
+    ninjas.forEach(ninja => {
+      
+      row = `<tr class="list__row" data-image="/assets/${Gen[ninja.Gen]}" data-activity="${ninja.Activity}" data-nationality="Swedish" data-dob="1990-09-02" data-country="se" data-remark="${ninja.Activity}" data-score="${ninja.Score}">
+            <td class="list__cell"><span class="list__value">${count}</span></td>
+            <td class="list__cell"><span class="list__value">${ninja.Ninja}</span><small class="list__label">Ninja</small></td>
+            <td class="list__cell"><span class="list__value">${ninja.Belt}</span><small class="list__label">Belt</small></td>
+            <td class="list__cell"><span class="list__value">${ninja.Level}</span><small class="list__label">Level</small></td>
+          </tr>`;
+      count+=1;
+      tab.innerHTML+=row;
+    });
+
+    formatTable()
+
+  }
+  </script>
 </body>
 </html>

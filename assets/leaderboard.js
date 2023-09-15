@@ -16,6 +16,8 @@ const sidebarClose = () => {
   }, 300);
 };
 
+function formatTable(){
+  const tableRow = document.querySelectorAll(".list__row");  
 tableRow.forEach(tableRow => {
   tableRow.addEventListener("click", function () {
     overlay.style.opacity = 0;
@@ -34,7 +36,7 @@ tableRow.forEach(tableRow => {
     const driverTeam = this.querySelector(".list__cell:nth-of-type(3) .list__value").innerHTML;
     const driverPoints = this.querySelector(".list__cell:nth-of-type(4) .list__value").innerHTML;
     const driverImage = this.dataset.image;
-    const driverNationality = this.dataset.nationality;
+    const ninjaActivity = this.dataset.activity;
     const driverDOB = this.dataset.dob;
     const driverCountry = this.dataset.country;
 
@@ -68,11 +70,11 @@ tableRow.forEach(tableRow => {
 				</tr>
                 <tr>
 					<td><small>Activity</small></td>
-					<td><img src="https://www.countryflags.io/${driverCountry}/shiny/24.png">${driverNationality}</td>
+					<td><img src="https://www.countryflags.io/${driverCountry}/shiny/24.png">${ninjaActivity}</td>
 				</tr>
 				<tr>
 					<td><small>Place</small></td>
-					<td>${driverPlace}</td>
+					<td>${driverPlace} </td>
 				</tr>
 				
 			</tbody>
@@ -84,6 +86,7 @@ tableRow.forEach(tableRow => {
 
   });
 });
+}
 
 closeOverlayBtn.addEventListener("click", function () {
   sidebarClose();

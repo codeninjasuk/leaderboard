@@ -53,6 +53,11 @@ html {
     border-spacing: 0;
     color: var(--grey-3);
   }
+
+  body{
+    padding-bottom: 40px;
+  }
+
   .list__header {
     padding: 2rem 2rem;
     background: white;
@@ -68,10 +73,24 @@ html {
     text-transform: uppercase;
     color: var(--red);
   }
+
+  .list__footer{
+    padding: 1rem 1rem;
+    background: white;
+    text-align: center;
+    border-bottom-left-radius: 0.4rem;
+    border-bottom-right-radius: 0.4rem;
+  }
+
   .list__value {
     display: block;
     font-size: 17px;
   }
+
+  .wrapper{
+    padding-bottom: 30px;
+  }
+
   .list__label {
     font-size: 10px;
     opacity: 0.6;
@@ -208,9 +227,9 @@ html {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    background-size: 220px;
+    /* background-size: 220px; */
     background-repeat: no-repeat;
-    background-position: top center;
+    background-position: center;
     border: 3px solid white;
     box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.12);
     margin-right: 1.5rem;
