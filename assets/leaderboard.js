@@ -73,8 +73,12 @@ tableRow.forEach(tableRow => {
 					<td><img src="https://www.countryflags.io/${driverCountry}/shiny/24.png">${ninjaActivity}</td>
 				</tr>
 				<tr>
-					<td><small>Place</small></td>
-					<td>${driverPlace} </td>
+					<td><small>Score</small></td>
+					<td>${this.dataset.score} </td>
+				</tr>
+        <tr>
+					<td><small>Latest Update</small></td>
+					<td>${this.dataset.remark} </td>
 				</tr>
 				
 			</tbody>

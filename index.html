@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <!-- <meta http-equiv="refresh" content="10"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Code Ninjas Langley | Leaderboard</title>
+    <meta name="description" content="Check out the leaderboard to see where you rank amongst our leading ninjas!">
+    <meta name="keywords" content="Leaderboard , Code Ninjas, Langley, Showcase, Games, Coding, Slough, Langley, Code Ninjas Langley">
     <link rel="stylesheet" href="/assets/style.css">
     <link rel="stylesheet" href="/assets/stars.css">
 </head>
@@ -159,43 +161,6 @@
 
   <script src="assets/papaparse.min.js"></script>
   <script src="assets/leaderboard.js"></script>
-
-  <script>
-  getText("https://docs.google.com/spreadsheets/d/e/2PACX-1vSscQfV-TdME-3KWkPSr_o3FphomzJ7o-TcTmCzCtY-grKUIzpI6GV0piJBy_hU_VH6OOWrbjhmfI9j/pub?gid=892912605&single=true&output=csv");
-  var tab = document.getElementById('leaderboard_table')
-  async function getText(file) {
-    let myObject = await fetch(file);
-    let myText = await myObject.text();
-    let ninjas = Papa.parse(myText, {header:true}).data;
-    console.log(ninjas);
-
-    var count = 1;
-
-    var n = ninjas.sort(function(a, b) { 
-        return  b.Score - a.Score;
-    })
-
-    Gen={
-      'M':'m-ninja.png',
-      'F':'f-ninja.png',
-      'O':'o-ninja.png'
-    }
-
-    ninjas.forEach(ninja => {
-      
-      row = `<tr class="list__row" data-image="/assets/${Gen[ninja.Gen]}" data-activity="${ninja.Activity}" data-nationality="Swedish" data-dob="1990-09-02" data-country="se" data-remark="${ninja.Activity}" data-score="${ninja.Score}">
-            <td class="list__cell"><span class="list__value">${count}</span></td>
-            <td class="list__cell"><span class="list__value">${ninja.Ninja}</span><small class="list__label">Ninja</small></td>
-            <td class="list__cell"><span class="list__value">${ninja.Belt}</span><small class="list__label">Belt</small></td>
-            <td class="list__cell"><span class="list__value">${ninja.Level}</span><small class="list__label">Level</small></td>
-          </tr>`;
-      count+=1;
-      tab.innerHTML+=row;
-    });
-
-    formatTable()
-
-  }
-  </script>
+  <script src="assets/script.js"></script>
 </body>
 </html>
