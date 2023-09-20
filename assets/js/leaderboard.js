@@ -31,50 +31,56 @@ tableRow.forEach(tableRow => {
     const sidebarBody = document.querySelector(".sidebar__body");
     sidebarBody.innerHTML = '';
 
-    const driverPlace = this.querySelector(".list__cell:nth-of-type(1) .list__value").innerHTML;
-    const driverName = this.querySelector(".list__cell:nth-of-type(2) .list__value").innerHTML;
-    const driverTeam = this.querySelector(".list__cell:nth-of-type(3) .list__value").innerHTML;
-    const driverPoints = this.querySelector(".list__cell:nth-of-type(4) .list__value").innerHTML;
-    const driverImage = this.dataset.image;
+    const ninjaName = this.querySelector(".list__cell:nth-of-type(2) .list__value").innerHTML;
+    const ninjaBelt = this.querySelector(".list__cell:nth-of-type(4) .list__value").innerHTML;
+    const ninjaLevel = this.querySelector(".list__cell:nth-of-type(5) .list__value").innerHTML;
+    const ninjaPicture = this.dataset.image;
     const ninjaActivity = this.dataset.activity;
-    const driverDOB = this.dataset.dob;
-    const driverCountry = this.dataset.country;
+    const ninjaActivityImg = this.dataset.country;
 
-    const newDriver = document.createElement('div');
-    newDriver.classList = 'driver';
+    const newNinja = document.createElement('div');
+    newNinja.classList = 'driver';
 
-    const driverContent = document.createElement('div');
-    driverContent.classList = 'driver__content';
+    const ninjaContent = document.createElement('div');
+    ninjaContent.classList = 'driver__content';
 
     const profile = document.createElement('div');
     profile.classList = 'driver__image';
-    profile.style.backgroundImage = `url('${driverImage}')`;
-    newDriver.appendChild(profile);
+    profile.style.backgroundImage = `url('/assets/img/belts/${ninjaBelt}.png')`;
+    newNinja.appendChild(profile);
 
-    const driverTitle = document.createElement('div');
-    driverTitle.classList = 'driver__title';
-    driverTitle.innerHTML = driverName;
-    driverContent.appendChild(driverTitle);
+    const ninjaTitle = document.createElement('div');
+    ninjaTitle.classList = 'driver__title';
+    ninjaTitle.innerHTML = ninjaName;
+    ninjaContent.appendChild(ninjaTitle);
 
-    const driverInfo = document.createElement('div');
-    driverInfo.innerHTML = `
+    activityNames = {
+      'Build 1':'build',
+      'Build 2':'build',
+      'Quest':'project',
+      'Explore':'explore',
+      'Adventure':'solve'
+    }
+
+    const ninjaInfo = document.createElement('div');
+    ninjaInfo.innerHTML = `
 		<table class="driver__table">
 			<tbody>
 				<tr>
 					<td><small>Belt</small></td>
-					<td>${driverTeam}</td>
+					<td class="caps">${ninjaBelt}</td>
 				</tr>
                 <tr>
 					<td><small>Level</small></td>
-					<td>${driverPoints}</td>
+					<td class="caps">${ninjaLevel}</td>
 				</tr>
                 <tr>
 					<td><small>Activity</small></td>
-					<td><img src="https://www.countryflags.io/${driverCountry}/shiny/24.png">${ninjaActivity}</td>
+					<td><img class="activity-badge" src="/assets/img/activity/${activityNames[ninjaActivity]}.png"><span>${ninjaActivity}</span></td>
 				</tr>
 				<tr>
 					<td><small>Score</small></td>
-					<td>${this.dataset.score} </td>
+					<td class="caps">${this.dataset.score} </td>
 				</tr>
         <tr>
 					<td><small>Latest Update</small></td>
@@ -83,10 +89,10 @@ tableRow.forEach(tableRow => {
 				
 			</tbody>
 		</table>`;
-    driverContent.appendChild(driverInfo);
+    ninjaContent.appendChild(ninjaInfo);
 
-    newDriver.appendChild(driverContent);
-    sidebarBody.appendChild(newDriver);
+    newNinja.appendChild(ninjaContent);
+    sidebarBody.appendChild(newNinja);
 
   });
 });
