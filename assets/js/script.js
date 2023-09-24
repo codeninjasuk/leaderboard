@@ -42,6 +42,8 @@ getText("https://docs.google.com/spreadsheets/d/e/2PACX-1vSscQfV-TdME-3KWkPSr_o3
       tr.dataset.image = `/assets/img/ninja-default.png`;
       tr.dataset.activity = ninja.Activity;
       tr.dataset.score = ninja.Score;
+      tr.dataset.Timestamp = ninja.Timestamp;
+      
       
       tr.dataset.remark = ninja.Remark;
       // count+=1;

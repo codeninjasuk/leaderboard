@@ -67,7 +67,7 @@ tableRow.forEach(tableRow => {
 		<table class="driver__table">
 			<tbody>
 				<tr>
-					<td><small>Belt</small></td>
+					<td class="sidebar-td"><small>Belt</small></td>
 					<td class="caps">${ninjaBelt}</td>
 				</tr>
                 <tr>
@@ -82,9 +82,13 @@ tableRow.forEach(tableRow => {
 					<td><small>Score</small></td>
 					<td class="caps">${this.dataset.score} </td>
 				</tr>
+        
         <tr>
-					<td><small>Latest Update</small></td>
-					<td>${this.dataset.remark} </td>
+					<td><small>Last Updated On</small></td>
+					<td>${timeSince(this.dataset.Timestamp)}</td>
+				</tr>
+        <tr>
+					<td class="center bold" colspan=2>${this.dataset.remark} </td>
 				</tr>
 				
 			</tbody>
@@ -105,3 +109,26 @@ closeOverlayBtn.addEventListener("click", function () {
 overlay.addEventListener("click", function () {
   sidebarClose();
 });
+
+
+
+function timeSince(timestring) {
+  var timeStamp = new Date(timestring);
+  var now = new Date(),
+    secondsPast = (now.getTime() - timeStamp) / 1000;
+  if (secondsPast < 60) {
+    return parseInt(secondsPast) + ' seconds ago';
+  }
+  if (secondsPast < 3600) {
+    return parseInt(secondsPast / 60) + ' minutes ago';
+  }
+  if (secondsPast <= 86400) {
+    return parseInt(secondsPast / 3600) + ' hours ago';
+  }
+  if (secondsPast > 86400) {
+    day = timeStamp.getDate();
+    month = timeStamp.toDateString().match(/ [a-zA-Z]*/)[0].replace(" ", "");
+    year = timeStamp.getFullYear() == now.getFullYear() ? "" : " " + timeStamp.getFullYear();
+    return day + " " + month + year;
+  }
+}
